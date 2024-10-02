@@ -132,6 +132,7 @@ const Expenses = () => {
                 from: formData.from as Date,
                 to: formData.to ? formData.to as Date : null
             }}))
+            setToggleDateFilter(false)
         },
         validationSchema: dateFilterSchema
     })
@@ -142,6 +143,7 @@ const Expenses = () => {
         }
 
         dispatch(getExpenses({categoryQuery}))
+        setToggleCategoryFilter(false)
     }
 
     return (
@@ -338,6 +340,16 @@ const Expenses = () => {
                                 <h2>Filter by date</h2>
                                 <MdFilterAlt size={20} color="#222222"/>
                             </div>
+                            <h2 
+                                className="hover:underline cursor-pointer" 
+                                onClick={() => {
+                                    setCategoryQuery([])
+                                    dateFormik.resetForm()
+                                    dispatch(getExpenses({}))
+                                }}
+                            >
+                                    Clear filters
+                            </h2>
                         </div>
                         <div className="flex items-center justify-between w-full py-4">
                             <h2 className="w-40 font-semibold">Description</h2>
@@ -363,6 +375,7 @@ const Expenses = () => {
                             </div>
                             ))}
                             {isFetchingExpenses && <ClipLoader size={50} className="mt-12"/>}
+                            {!isFetchingExpenses && expenses.length === 0 && <h2 className="mt-12">No expenses found</h2>}
                         </div>
                         
                     </div>

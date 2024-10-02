@@ -28,6 +28,7 @@ const Dashboard = () => {
                         </div>
                         ))}
                         {isFetchingCategories && <ClipLoader size={50} />}
+                        {!isFetchingCategories && categories.length === 0 && <h2 className="mt-12">No categories found</h2>}
                     </div>
                     <div className="flex items-center w-full justify-center gap-12 mt-8">
                         <div className="flex items-center gap-4">

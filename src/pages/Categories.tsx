@@ -190,6 +190,7 @@ const Categories = () => {
                             </div>
                             ))}
                             {isFetchingCategories && <ClipLoader size={50} className="mt-12"/>}
+                            {!isFetchingCategories && categories.length === 0 && <h2 className="mt-12">No categories found</h2>}
                         </div>       
                     </div>
                 </div>
