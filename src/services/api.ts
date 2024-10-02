@@ -1,6 +1,5 @@
 import axios from 'axios';
 import store from '../redux/store';
-import { Navigate } from 'react-router-dom';
 
 
 const axiosInstance = axios.create({
