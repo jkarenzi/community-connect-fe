@@ -11,7 +11,13 @@ export default {
       md: '768px',
       lg: '1024px',
     },
-    extend: {},
+    extend: {
+      colors:{
+        custom:{
+          black: '#222222'
+        }
+      }
+    },
   },
   plugins: [],
 }

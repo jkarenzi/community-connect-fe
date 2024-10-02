@@ -1,9 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import weatherReducer from './weatherSlice'
+import authReducer from './authSlice'
+import categoryReducer from './categorySlice'
+import expenseReducer from './expenseSlice'
+
 
 const store = configureStore({
     reducer:{
-        weather: weatherReducer
+        auth: authReducer,
+        category: categoryReducer,
+        expense: expenseReducer
     }
 })
 

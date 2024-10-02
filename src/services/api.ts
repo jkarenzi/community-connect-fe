@@ -1,4 +1,6 @@
 import axios from 'axios';
+import store from '../redux/store';
+import { Navigate } from 'react-router-dom';
 
 
 const axiosInstance = axios.create({
@@ -8,6 +10,17 @@ const axiosInstance = axios.create({
   },
 });
 
+axiosInstance.interceptors.request.use(
+  (request) => {
+    const state = store.getState()
+    const token = state.auth.token
+    if(token){
+      request.headers.Authorization = `Bearer ${token}`
+    }
+
+    return request
+  }
+)
 
 axiosInstance.interceptors.response.use(
   (response) => {
@@ -18,7 +31,7 @@ axiosInstance.interceptors.response.use(
       return Promise.reject('Network Error')
     }
 
-    return Promise.reject(error.response.data.error.message)
+    return Promise.reject(error.response.data.message)
   }
 )
 
