@@ -11,8 +11,7 @@ export const expenseSchema = Yup.object({
 });
 
 export const dateFilterSchema = Yup.object({
-  from: Yup.date()
-    .required("'From' date is required"),
+  from: Yup.date().required("From date is required"),
   to: Yup.date()
     .nullable()
     .when(

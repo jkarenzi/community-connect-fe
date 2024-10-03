@@ -54,10 +54,6 @@ const Expenses = () => {
     }
 
     useEffect(() => {
-        console.log(categoryQuery)
-    },[categoryQuery])
-
-    useEffect(() => {
         dispatch(getExpenses({}))
         dispatch(getCategories())
     },[])
