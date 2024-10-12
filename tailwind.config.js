@@ -11,6 +11,17 @@ export default {
       md: '768px',
       lg: '1024px',
     },
+    extend:{
+      colors:{
+        custom:{
+          darkRed: '#8c181b',
+          textBlue: '#002839'
+        }
+      },
+      boxShadow: {
+        'all-sides': '0 5px 15px rgba(0, 0, 0, 0.2)',
+      },
+    }    
   },
   plugins: [],
 }

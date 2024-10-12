@@ -21,7 +21,6 @@ export interface CreateServiceFormData {
     pricing: number;
     name: string;
     description: string;
-    image: string;
 }
 
 export interface UpdateServiceFormData {
@@ -31,11 +30,10 @@ export interface UpdateServiceFormData {
     pricing?: number;
     name?: string;
     description?: string;
-    image?: string; 
 }
 
 export interface IUpdateData {
-    id: string,
+    id: number,
     formData: UpdateServiceFormData
 }
   

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from '../../services/api'
-import { authFormData } from "../../types/Auth";
+import { authFormData, signUpFormData } from "../../types/Auth";
 import { ApiResponse } from "../../types/ApiResponse";
 
 export const login = createAsyncThunk<ApiResponse, authFormData>('auth/login', async(formData, thunkAPI) => {
@@ -12,7 +12,7 @@ export const login = createAsyncThunk<ApiResponse, authFormData>('auth/login', a
     }
 })
 
-export const signUp = createAsyncThunk<ApiResponse, authFormData>('auth/signUp', async(formData, thunkAPI) => {
+export const signUp = createAsyncThunk<ApiResponse, signUpFormData>('auth/signUp', async(formData, thunkAPI) => {
     try{
         const response = await axios.post('auth/signUp', formData)
         return response.data

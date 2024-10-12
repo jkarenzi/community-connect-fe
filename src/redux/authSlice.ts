@@ -3,6 +3,7 @@ import {jwtDecode} from 'jwt-decode'
 import { authFormData, User } from "../types/Auth";
 import axios from "axios";
 import { ApiResponse } from "../types/ApiResponse";
+import { errorToast, successToast } from "../services/toast";
 
 export const login = createAsyncThunk<ApiResponse, authFormData>('auth/login', async(formData, thunkAPI) => {
     try{
@@ -79,11 +80,12 @@ const authSlice = createSlice({
             state.user = jwtDecode<decodedToken>(action.payload.token).user
             state.isLoggingIn = false
             state.loginStatus = 'successful'
+            successToast('Login successful')
         })
         .addCase(login.rejected, (state, action) => {
             state.isLoggingIn = false
             state.loginStatus = 'failed'
-            alert(action.payload)
+            errorToast(action.payload as string)
         })
         .addCase(signUp.pending, (state) => {
             state.isSigningUp = true
@@ -95,7 +97,7 @@ const authSlice = createSlice({
         .addCase(signUp.rejected, (state, action) => {
             state.isSigningUp = false
             state.signUpStatus = 'failed'
-            alert(action.payload)
+            errorToast(action.payload as string)
         })
     }
 })

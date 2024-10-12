@@ -10,3 +10,9 @@ export interface authFormData {
     email:string,
     password: string
 }
+
+export interface signUpFormData {
+    email:string,
+    password: string
+    role: string
+}

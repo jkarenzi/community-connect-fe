@@ -8,8 +8,5 @@ export const serviceSchema = Yup.object().shape({
     .required('Pricing is required')
     .positive('Pricing must be a positive number'),
   name: Yup.string().required('Name is required'),
-  description: Yup.string().required('Description is required'),
-  image: Yup.string()
-    .url('Image must be a valid URL')
-    .required('Image is required'),
+  description: Yup.string().required('Description is required')
 });
