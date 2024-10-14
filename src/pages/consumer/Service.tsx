@@ -8,6 +8,7 @@ import { FaMoneyBillAlt, FaStar } from "react-icons/fa";
 import ClipLoader from "react-spinners/ClipLoader";
 import { leaveReview } from "../../redux/actions/reviewActions";
 import { resetStatus } from "../../redux/reviewSlice";
+import { IoIosMail } from "react-icons/io";
 
 
 const Service = () => {
@@ -89,7 +90,7 @@ const Service = () => {
             <Drawer/>
             <div className="flex-1 flex flex-col items-center py-8 bg-[#f2f2f2]">
                 <div className="flex gap-2 w-full pl-8">
-                    <Link to={'/consumer/services'} className="text-gray-500">Services</Link> &gt; {' '}
+                    <Link to={'/'} className="text-gray-500">Services</Link> &gt; {' '}
                     <button className="hover:underline font-semibold">{selectedService?.name}</button>
                 </div>
                 <div className="w-[90%] h-[75vh] flex flex-col gap-6 mt-12">
@@ -100,10 +101,14 @@ const Service = () => {
                         <ClipLoader color="#002839" size={50}/>
                     </div>}
                     {!fetching && selectedService && <div className="w-full h-[90%] flex flex-col overflow-y-auto">
-                        <img src="https://th.bing.com/th/id/R.130a0dc916cf8a9f91dc201f625069e1?rik=NU6fSJNRMTk7fg&pid=ImgRaw&r=0" className="w-full h-[25rem] object-cover"/>
+                        <img src={selectedService.image} className="w-full h-[25rem] object-cover"/>
                         <h2 className="text-custom-textBlue text-2xl mt-12">{selectedService.name} ({selectedService?.type})</h2>
                         <p className="mt-4">{selectedService.description}</p>
                         <div className="flex items-center gap-4 mt-12">
+                            <IoIosMail size={20}/>
+                            <h2 className="text-lg">{selectedService.serviceProvider.email}</h2>
+                        </div>
+                        <div className="flex items-center gap-4 mt-4">
                             <IoLocationSharp size={20}/>
                             <h2 className="text-lg">{selectedService.location}</h2>
                         </div>

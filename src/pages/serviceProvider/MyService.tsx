@@ -197,12 +197,12 @@ const MyService = () => {
                             <h2 className="text-custom-textBlue hover:underline cursor-pointer" onClick={() => setToggleUpdateOverlay(true)}>Edit</h2>
                             <h2 className="text-custom-darkRed hover:underline cursor-pointer" onClick={() => setToggleDeleteOverlay({state:true, name:selectedService!.name})}>Delete</h2>
                         </div>}
-                    </div> 
+                    </div>
                     {fetching && <div className="flex justify-center items-center w-full mt-20">
                         <ClipLoader color="#002839" size={50}/>
                     </div>}               
                     {!fetching && selectedService && <div className="w-full h-[90%] flex flex-col overflow-y-auto">
-                        <img src="https://th.bing.com/th/id/R.130a0dc916cf8a9f91dc201f625069e1?rik=NU6fSJNRMTk7fg&pid=ImgRaw&r=0" className="w-full h-[25rem] object-cover"/>
+                        <img src={selectedService.image} className="w-full h-[25rem] object-cover"/>
                         <h2 className="text-custom-textBlue text-2xl mt-12">{selectedService?.name} ({selectedService?.type})</h2>
                         <p className="mt-4">{selectedService?.description}</p>
                         <div className="flex items-center gap-4 mt-12">

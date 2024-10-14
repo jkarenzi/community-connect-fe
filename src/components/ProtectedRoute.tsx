@@ -14,14 +14,16 @@ const PrivateRoute = ({ children, allowedRoles }: PrivateProps) => {
   useEffect(() => {
     if (!token) {
       navigate('/login');
+      return
     }
 
     if(!allowedRoles.includes(user!.role)){
         navigate('/login');
+        return
     }
   }, [token, user])
 
-  if(!token) return null;
+  if(!token) return <div></div>;
 
   return <>{children}</>;
 };

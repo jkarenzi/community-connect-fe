@@ -6,7 +6,7 @@ import { IoClose } from "react-icons/io5";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { createService, fetchOwnServices } from "../../redux/actions/serviceActions";
-import { FaUser } from "react-icons/fa";
+import { FaStar, FaStarHalfAlt, FaUser } from "react-icons/fa";
 import { FaMoneyBillAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 const MyServices = () => {
     const [toggleCreateOverlay, setToggleCreateOverlay] = useState(false)
     const {loading, status, ownServices, fetching} = useAppSelector(state => state.service)
+    const [image, setImage] = useState<File | null>(null)
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
@@ -30,7 +31,8 @@ const MyServices = () => {
         onSubmit: (formData) => {
           dispatch(createService({
             ...formData,
-            pricing: Number(formData.pricing)
+            pricing: Number(formData.pricing),
+            image: image!
           }))
         },
       });
@@ -120,7 +122,7 @@ const MyServices = () => {
                                     />
                                     {formik.touched.pricing && formik.errors.pricing && <div className="text-red-500 text-sm">{formik.errors.pricing}</div>}
                                 </div>
-                                <div className="flex flex-col gap-2 w-[90%]">
+                                <div className="flex flex-col gap-2 w-full">
                                     <label className="m-0">Availability</label>
                                     <div className="flex flex-col">
                                         <div className="flex items-center gap-2">
@@ -146,6 +148,10 @@ const MyServices = () => {
                                     </div>
                                     {formik.touched.availability && formik.errors.availability && <div className="text-red-500 text-sm">{formik.errors.availability}</div>}
                                 </div>
+                                <div className="flex flex-col gap-2 w-full">
+                                    <label className="m-0">Service Image</label>
+                                    <input type="file" accept="image/*" required onChange={(e) => setImage(e.target.files![0])}/>
+                                </div>
                             </div>   
                         </div>
                         <button type='submit' className="flex items-center justify-center w-full h-10 bg-custom-darkRed text-white rounded-md mt-8">{loading ? <ClipLoader size={20} color="white"/> : 'Submit'}</button>
@@ -167,10 +173,21 @@ const MyServices = () => {
                         {!fetching && ownServices.map(service => (
                             <div className="bg-white border border-[lightgray] flex flex-col rounded-lg w-[16rem] h-[16rem] overflow-hidden" onClick={() => navigate(`/serviceprovider/services/${service.id}`)}>
                                 <div className="w-full h-[60%]">
-                                    <img src="https://th.bing.com/th/id/R.130a0dc916cf8a9f91dc201f625069e1?rik=NU6fSJNRMTk7fg&pid=ImgRaw&r=0" className="w-full h-full object-cover"/>
+                                    <img src={service.image} className="w-full h-full object-cover"/>
                                 </div>
                                 <div className="flex-1 flex flex-col justify-between px-2 pb-2">
-                                    <h2 className="text-custom-textBlue text-lg">{service.name}</h2>
+                                    <div className="flex items-center justify-between">
+                                        <h2 className="text-custom-textBlue text-lg">{service.name}</h2>
+                                        <div className="flex items-center">
+                                            {Array.from({length: Math.floor(service.avgRating)}, () => (
+                                                <FaStar size={15} color="#FACC15"/>
+                                            ))}
+                                            {service.avgRating % 1 >= 0.5 && <FaStarHalfAlt color="#FACC15" size={15}/>}    
+                                            {Array.from({length: 5 - Math.floor(service.avgRating) - (service.avgRating % 1 >= 0.5 ? 1 : 0)}, () => (
+                                                <FaStar size={15} color="#9CA3AF"/>
+                                            ))}
+                                        </div>
+                                    </div>
                                     <div className="flex flex-col gap-2">
                                         <div className="flex items-center gap-3">
                                             <FaUser size={13} color='black'/>

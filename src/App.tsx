@@ -16,6 +16,11 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/">
+        <Route index element={<Services/>}/>
+        <Route path='consumer/services/:id' element={<Service/>}/>
+        <Route path='consumer/settings' element={<ProtectedRoute allowedRoles={['consumer']}>
+          <Settings/>
+        </ProtectedRoute>}/>
         <Route path='login' element={<Login/>}/>
         <Route path='signup' element={<SignUp/>}/>
         <Route path='serviceprovider/services' element={<ProtectedRoute allowedRoles={['serviceProvider']}>
@@ -25,15 +30,6 @@ function App() {
           <MyService/>
         </ProtectedRoute>}/>
         <Route path='serviceprovider/settings' element={<ProtectedRoute allowedRoles={['serviceProvider']}>
-          <Settings/>
-        </ProtectedRoute>}/>
-        <Route path='consumer/services' element={<ProtectedRoute allowedRoles={['consumer']}>
-          <Services/>
-        </ProtectedRoute>}/>
-        <Route path='consumer/services/:id' element={<ProtectedRoute allowedRoles={['consumer']}>
-          <Service/>
-        </ProtectedRoute>}/>
-        <Route path='consumer/settings' element={<ProtectedRoute allowedRoles={['consumer']}>
           <Settings/>
         </ProtectedRoute>}/>
       </Route>

@@ -44,9 +44,23 @@ export const fetchServiceById = createAsyncThunk<Service, number>(
 
 export const createService = createAsyncThunk<Service, CreateServiceFormData>(
   'services/create',
-  async (formData, { rejectWithValue }) => {
+  async (data, { rejectWithValue }) => {
+    const formData = new FormData();
+    formData.append('type', data.type);
+    formData.append('location', data.location);
+    formData.append('availability', data.availability.toString())
+    formData.append('pricing', data.pricing.toString());
+    formData.append('name', data.name);
+    formData.append('description', data.description);
+    formData.append('image', data.image);
+
     try {
-      const response = await axios.post('service', formData);
+      const response = await axios.post('service', data, {
+        headers:{
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      
       return response.data;
     } catch (error) {
       return rejectWithValue(error);

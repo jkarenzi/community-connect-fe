@@ -2,7 +2,7 @@ import Drawer from "../../components/CDrawer";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {  fetchAllServices } from "../../redux/actions/serviceActions";
-import { FaUser } from "react-icons/fa";
+import { FaStar, FaStarHalfAlt, FaUser } from "react-icons/fa";
 import { FaMoneyBillAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -30,10 +30,21 @@ const Services = () => {
                         {!fetching && services.map(service => (
                             <div className="bg-white border border-[lightgray] flex flex-col rounded-lg w-[16rem] h-[16rem] overflow-hidden" onClick={() => navigate(`/consumer/services/${service.id}`)}>
                                 <div className="w-full h-[60%]">
-                                    <img src="https://th.bing.com/th/id/R.130a0dc916cf8a9f91dc201f625069e1?rik=NU6fSJNRMTk7fg&pid=ImgRaw&r=0" className="w-full h-full object-cover"/>
+                                    <img src={service.image} className="w-full h-full object-cover"/>
                                 </div>
                                 <div className="flex-1 flex flex-col justify-between px-2 pb-2">
-                                    <h2 className="text-custom-textBlue text-lg">{service.name}</h2>
+                                    <div className="flex items-center justify-between">
+                                        <h2 className="text-custom-textBlue text-lg">{service.name}</h2>
+                                        <div className="flex items-center">
+                                            {Array.from({length: Math.floor(service.avgRating)}, () => (
+                                                <FaStar size={15} color="#FACC15"/>
+                                            ))}
+                                            {service.avgRating % 1 >= 0.5 && <FaStarHalfAlt color="#FACC15" size={15}/>}    
+                                            {Array.from({length: 5 - Math.floor(service.avgRating) - (service.avgRating % 1 >= 0.5 ? 1 : 0)}, () => (
+                                                <FaStar size={15} color="#9CA3AF"/>
+                                            ))}
+                                        </div>
+                                    </div>
                                     <div className="flex flex-col gap-2">
                                         <div className="flex items-center gap-3">
                                             <FaUser size={13} color='black'/>

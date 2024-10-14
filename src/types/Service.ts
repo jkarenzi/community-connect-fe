@@ -9,6 +9,7 @@ export interface Service {
     pricing: number;
     name: string;
     description: string;
+    avgRating: number;
     image: string;
     serviceProvider: User
     reviews: Review[]
@@ -21,6 +22,7 @@ export interface CreateServiceFormData {
     pricing: number;
     name: string;
     description: string;
+    image: File;
 }
 
 export interface UpdateServiceFormData {
