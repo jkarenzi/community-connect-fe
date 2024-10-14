@@ -26,7 +26,7 @@ const Login = () => {
         if(loginStatus === 'successful'){
             dispatch(resetLoginStatus())
             if(user!.role === 'consumer'){
-                navigate('/consumer/services')
+                navigate('/')
             }else{
                 navigate('/serviceprovider/services')        
             }
