@@ -10,7 +10,7 @@ import { resetLoginStatus } from "../redux/authSlice";
 const Login = () => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
-    const {token, isLoggingIn, user, loginStatus} = useAppSelector(state => state.auth)
+    const {isLoggingIn, user, loginStatus} = useAppSelector(state => state.auth)
     const formik = useFormik({
         initialValues:{
             email: '',
