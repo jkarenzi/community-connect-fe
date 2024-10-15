@@ -18,12 +18,13 @@ const Service = () => {
     const [error, setError] = useState("")
     const [newReview, setNewReview] = useState(false)
     const [toggleLoginOverlay, setToggleLoginOverlay] = useState(false)
+    const {reviews} = useAppSelector(state => state.review)
     const dispatch = useAppDispatch()
     const {id} = useParams()
 
     useEffect(() => {
     dispatch(fetchServiceById(Number(id)))
-    },[newReview]) 
+    },[reviews]) 
 
     const [review, setReview] = useState<{
         rating: number | null;

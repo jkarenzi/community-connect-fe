@@ -60,7 +60,7 @@ export const createService = createAsyncThunk<Service, CreateServiceFormData>(
           'Content-Type': 'multipart/form-data'
         }
       });
-      
+
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -74,6 +74,7 @@ export const updateService = createAsyncThunk<Service, IUpdateData>(
   async ({ id, formData }, { rejectWithValue }) => {
     try {
       const response = await axios.patch(`service/${id}`, formData);
+      console.log(response.data)
       return response.data;
     } catch (error) {
       return rejectWithValue(error);

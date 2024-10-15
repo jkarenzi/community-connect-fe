@@ -84,11 +84,14 @@ const serviceSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(updateService.fulfilled, (state, action) => {
-      const index = state.ownServices.findIndex(service => service.id === action.payload.id);
-      if (index !== -1) {
-        state.ownServices[index] = action.payload;
-        state.selectedService = action.payload;
-      }
+      state.ownServices = state.ownServices.map(service => {
+        if(service.id === action.payload.id){
+          return action.payload
+        }else{
+          return service
+        }
+      })
+      state.selectedService = action.payload;
       state.loading = false;
       state.status = 'successful'
       successToast('Successful')
