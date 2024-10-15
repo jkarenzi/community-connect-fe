@@ -16,7 +16,6 @@ const Service = () => {
     const {loading,status} = useAppSelector(state => state.review)
     const {token} = useAppSelector(state => state.auth)
     const [error, setError] = useState("")
-    const [newReview, setNewReview] = useState(false)
     const [toggleLoginOverlay, setToggleLoginOverlay] = useState(false)
     const {reviews} = useAppSelector(state => state.review)
     const dispatch = useAppDispatch()
@@ -58,7 +57,6 @@ const Service = () => {
 
       useEffect(() => {
         if(status === 'successful'){
-            setNewReview(true);
             setError('');
             dispatch(resetStatus())
         }
