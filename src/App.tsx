@@ -10,6 +10,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import MyService from './pages/serviceProvider/MyService';
 import Service from './pages/consumer/Service';
 import Services from './pages/consumer/Services';
+import BookingCalendar from './pages/BookingCalendar';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         </ProtectedRoute>}/>
         <Route path='login' element={<Login/>}/>
         <Route path='signup' element={<SignUp/>}/>
+        <Route path='booking' element={<BookingCalendar/>}/>
         <Route path='serviceprovider/services' element={<ProtectedRoute allowedRoles={['serviceProvider']}>
           <MyServices/>
         </ProtectedRoute>}/>
