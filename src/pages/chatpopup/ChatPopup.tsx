@@ -4,7 +4,7 @@ import { IoClose, IoChatbubbleEllipsesSharp } from "react-icons/io5";
 const ChatPopup = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]); // State to store chat messages
+  const [messages, setMessages] = useState<{sender: string, message: string}[]>([]); // State to store chat messages
 
   const toggleChat = () => {
     setIsChatOpen(!isChatOpen);
@@ -18,7 +18,7 @@ const ChatPopup = () => {
         message,
       };
       // Update message list with new message
-      setMessages((prevMessages) => [...prevMessages, newMessage]);
+      setMessages([...messages, newMessage]);
       setMessage(""); // Clear input after sending
     }
   };

@@ -6,11 +6,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import SignUp from './pages/Signup';
 import MyServices from './pages/serviceProvider/MyServices';
 import Settings from './pages/serviceProvider/Settings';
+import CSettings from './pages/consumer/Settings';
 import ProtectedRoute from './components/ProtectedRoute';
 import MyService from './pages/serviceProvider/MyService';
 import Service from './pages/consumer/Service';
 import Services from './pages/consumer/Services';
-import BookingCalendar from './pages/BookingCalendar';
+//import BookingCalendar from './pages/BookingCalendar';
 
 
 function App() {
@@ -20,11 +21,11 @@ function App() {
         <Route index element={<Services/>}/>
         <Route path='consumer/services/:id' element={<Service/>}/>
         <Route path='consumer/settings' element={<ProtectedRoute allowedRoles={['consumer']}>
-          <Settings/>
+          <CSettings/>
         </ProtectedRoute>}/>
         <Route path='login' element={<Login/>}/>
         <Route path='signup' element={<SignUp/>}/>
-        <Route path='booking' element={<BookingCalendar/>}/>
+        {/* <Route path='booking' element={<BookingCalendar/>}/> */}
         <Route path='serviceprovider/services' element={<ProtectedRoute allowedRoles={['serviceProvider']}>
           <MyServices/>
         </ProtectedRoute>}/>

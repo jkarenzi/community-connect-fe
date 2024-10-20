@@ -4,7 +4,7 @@ import { fetchServiceById } from "../../redux/actions/serviceActions";
 import { Link, useParams } from "react-router-dom";
 import Drawer from "../../components/CDrawer";
 import { IoClose, IoLocationSharp } from "react-icons/io5";
-import { FaMoneyBillAlt, FaStar } from "react-icons/fa";
+import { FaMoneyBillAlt } from "react-icons/fa";
 import ClipLoader from "react-spinners/ClipLoader";
 import { leaveReview } from "../../redux/actions/reviewActions";
 import { resetStatus } from "../../redux/reviewSlice";
